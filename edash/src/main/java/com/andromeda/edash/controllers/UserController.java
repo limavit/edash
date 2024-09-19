@@ -1,7 +1,5 @@
 package com.andromeda.edash.controllers;
 
-import javax.print.attribute.standard.Media;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,7 @@ import com.andromeda.edash.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
 public class UserController {
 	@Autowired
 	public UserService userService;
@@ -33,7 +31,7 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 
-	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User createUser(@RequestBody User user) {
 		userService.insertUser(user);;		
 		return user;
