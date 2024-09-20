@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.andromeda.edash.exceptions.RequiredObjectIsNullException;
 import com.andromeda.edash.model.User;
+import com.andromeda.edash.repositories.LogAcessoRepository;
 import com.andromeda.edash.repositories.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	LogAceessoService logAcesso = new LogAceessoService();
 	
 	private Logger logger = Logger.getLogger(UserService.class.getName());
 	
@@ -21,7 +24,8 @@ public class UserService {
 		try {
 			User u = userRepository.findByEmail(email);
 			logger.info("Usuário encontrado: " + u.getId());
-			return u;
+			logAcesso.insertLogAcesso(u, "findUserByEmail");
+			return u;			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			
@@ -30,6 +34,7 @@ public class UserService {
 	}
 	
 	public User insertUser(User user) {
+		logAcesso.insertLogAcesso(user, "insertUser");
 		if (user == null) throw new RequiredObjectIsNullException();
 		userRepository.save(user);
 		return user;
