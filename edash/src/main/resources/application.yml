@@ -11,3 +11,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
       show-sql: false 
+  mail:
+    host: smtp.mailersend.net
+    port: 587
+    username: MS_pj3MKu@trial-351ndgw2wndgzqx8.mlsender.net
+    password: 7sx9ry4EQi7XxV1x
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
