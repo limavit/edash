@@ -67,11 +67,12 @@ INSERT INTO t_tipoaposta (tipoaposta) VALUES
 ('EXCHANGE'),
 ('BET');
 COMMIT;
-CREATE TABLE t_banca (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    valor_inicial DECIMAL(15, 2) NOT NULL,
-    valor_atual DECIMAL(15, 2) NOT NULL,
-    ultima_atualizacao TIMESTAMP NOT NULL
-);
-COMMIT;
+CREATE TABLE `t_banca` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `valor_inicial` decimal(15,2) NOT NULL,
+  `valor_atual` decimal(15,2) NOT NULL,
+  `ultima_atualizacao` timestamp NOT NULL,
+  `user_id` bigint NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
 
